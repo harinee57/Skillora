@@ -1,0 +1,269 @@
+{
+  "python": {
+    "title": "Python",
+    "description": "A practical introduction to core Python programming, from control flow to small projects.",
+    "modules": [
+      {
+        "number": 4,
+        "title": "Conditional Statements",
+        "description": "Make programs choose what to do using Boolean conditions and branching.",
+        "notes": [
+          "An if statement runs its indented block only when its condition evaluates to True. Use elif for another condition and else for the fallback; indentation defines each block.",
+          "Comparisons such as ==, !=, <, and >= produce Boolean values. Use == to compare values and = to assign a value; they are not interchangeable.",
+          "Combine conditions with and, or, and not. Keep related tests readable, and remember that Python evaluates and/or with short-circuit behavior."
+        ],
+        "code": "temperature = 18\nif temperature >= 25:\n    print(\"warm\")\nelif temperature >= 15:\n    print(\"mild\")\nelse:\n    print(\"cool\")",
+        "output": "mild",
+        "takeaways": [
+          "Use if/elif/else to express mutually exclusive paths clearly.",
+          "Conditions must evaluate to a truth value; comparisons are a common way to create one.",
+          "Consistent indentation is part of Python syntax."
+        ]
+      },
+      {
+        "number": 5,
+        "title": "Loops",
+        "description": "Repeat work with for and while loops, and control repetition safely.",
+        "notes": [
+          "A for loop visits items in an iterable, such as a list or range. range( stop ) generates integers beginning at zero and excluding stop.",
+          "A while loop repeats as long as its condition is true. Update the state used by the condition so the loop can eventually finish.",
+          "break exits the nearest loop and continue skips to its next iteration. Use these sparingly when a simple loop condition is clearer."
+        ],
+        "code": "total = 0\nfor number in range(1, 5):\n    total += number\nprint(total)",
+        "output": "10",
+        "takeaways": [
+          "Use for when iterating over a known sequence or iterable.",
+          "Use while when repetition depends on a condition that changes.",
+          "Check loop bounds carefully; range excludes its ending value."
+        ]
+      },
+      {
+        "number": 6,
+        "title": "Strings",
+        "description": "Work with text using indexing, methods, formatting, and careful assumptions about characters.",
+        "notes": [
+          "Strings are immutable sequences of Unicode text. Indexing starts at zero, negative indices count from the end, and slicing uses a start-inclusive, end-exclusive range.",
+          "Methods such as strip(), lower(), and replace() return new strings rather than changing the original. Method calls can be chained when each step is clear.",
+          "f-strings insert values into text using expressions in braces. Text input often needs validation and normalization; lowercasing is not a substitute for every language-aware comparison."
+        ],
+        "code": "name = \"  Ada  \"\nclean_name = name.strip()\nprint(f\"Hello, {clean_name.lower()}!\")",
+        "output": "Hello, ada!",
+        "takeaways": [
+          "String operations create results; they do not mutate the original string.",
+          "Use slicing and indexing with awareness of zero-based, end-exclusive positions.",
+          "f-strings are a readable way to combine text and values."
+        ]
+      },
+      {
+        "number": 7,
+        "title": "Data Structures",
+        "description": "Choose lists, tuples, dictionaries, and sets to organize collections of values.",
+        "notes": [
+          "Lists are ordered and mutable, making them useful for collections that change. Tuples are ordered but immutable, and can represent a fixed grouping of values.",
+          "Dictionaries map unique, hashable keys to values. Access a key with square brackets when it must exist, or use get() when a missing key should have a default.",
+          "Sets hold distinct hashable elements and support operations such as union and intersection. Their iteration order should not be used as a meaningful sequence."
+        ],
+        "code": "scores = {\"Mina\": 8, \"Lee\": 9}\nscores[\"Mina\"] += 1\nunique_tags = set([\"python\", \"data\", \"python\"])\nprint(scores[\"Mina\"], len(unique_tags))",
+        "output": "9 2",
+        "takeaways": [
+          "Select a structure based on whether order, mutation, uniqueness, or key-based lookup matters.",
+          "Dictionary keys must be unique, and missing-key behavior should be handled intentionally.",
+          "A set removes duplicates but is not an ordered list."
+        ]
+      },
+      {
+        "number": 8,
+        "title": "Functions",
+        "description": "Package reusable logic into functions with parameters, return values, and clear scope.",
+        "notes": [
+          "Define a function with def, give its inputs as parameters, and use return to send a result back to the caller. A function that reaches its end without returning a value returns None.",
+          "Default parameter values are evaluated once when the function is defined. Avoid mutable defaults such as [] when each call should get a fresh collection.",
+          "Local names belong to a function's local scope. Prefer passing inputs and returning outputs over relying on global state, which makes code easier to test."
+        ],
+        "code": "def area_rectangle(width, height):\n    return width * height\n\narea = area_rectangle(3, 4)\nprint(area)",
+        "output": "12",
+        "takeaways": [
+          "Functions make repeated behavior reusable and easier to test.",
+          "Use return for a computed result; print is for displaying a result.",
+          "Pass needed data explicitly rather than depending on hidden global state."
+        ]
+      },
+      {
+        "number": 9,
+        "title": "Object-Oriented Programming",
+        "description": "Model related data and behavior with classes and objects.",
+        "notes": [
+          "A class defines a kind of object; an instance is one object created from that class. The initializer __init__ commonly assigns instance attributes through self.",
+          "Instance methods receive the instance as their first parameter, conventionally named self. Each instance can hold its own attribute values.",
+          "Use a class when a concept has related state and behavior. For a small collection of unrelated values or a simple transformation, a function or built-in data structure may be simpler."
+        ],
+        "code": "class Counter:\n    def __init__(self, value=0):\n        self.value = value\n\n    def increment(self):\n        self.value += 1\n\ncount = Counter()\ncount.increment()\nprint(count.value)",
+        "output": "1",
+        "takeaways": [
+          "Classes describe shared structure and behavior; instances hold individual state.",
+          "self refers to the instance receiving a method call.",
+          "Choose object-oriented design when it clarifies the problem, not simply because it is available."
+        ]
+      },
+      {
+        "number": 10,
+        "title": "File Handling & Exceptions",
+        "description": "Read and write files safely and respond to expected runtime errors.",
+        "notes": [
+          "Use open() with a mode that matches the task; text files commonly use r to read and w to write. The w mode replaces an existing file's contents.",
+          "A with statement closes the file automatically, including when an error occurs. Specify encoding=\"utf-8\" for predictable text handling across systems.",
+          "Catch specific exceptions around operations that can fail, such as FileNotFoundError. Do not silently swallow errors with a bare except; unexpected failures should remain visible."
+        ],
+        "code": "from pathlib import Path\n\npath = Path(\"hello.txt\")\npath.write_text(\"Hello, file!\", encoding=\"utf-8\")\nwith path.open(encoding=\"utf-8\") as file:\n    text = file.read()\nprint(text)",
+        "output": "Hello, file!",
+        "takeaways": [
+          "Use with to manage file resources safely.",
+          "Choose file modes carefully; writing with w overwrites existing content.",
+          "Handle expected errors specifically and keep useful diagnostic information."
+        ]
+      },
+      {
+        "number": 11,
+        "title": "Modules & Libraries",
+        "description": "Organize code into modules and use Python's standard library and installed packages.",
+        "notes": [
+          "A module is a Python file that can define reusable names. import math makes the module available under its name; from math import sqrt imports a particular name.",
+          "The standard library ships with Python and provides tested tools for common tasks. Third-party packages must be installed in the environment before they can be imported.",
+          "When a file is run directly, __name__ is set to \"__main__\". A main guard keeps script-only behavior from running when the module is imported."
+        ],
+        "code": "import math\n\ndef circle_area(radius):\n    return math.pi * radius ** 2\n\nif __name__ == \"__main__\":\n    print(round(circle_area(2), 2))",
+        "output": "12.57",
+        "takeaways": [
+          "Imports let you reuse code and keep related functionality organized.",
+          "Prefer standard-library tools when they fit; install external libraries in the correct environment.",
+          "A main guard separates reusable definitions from script entry-point behavior."
+        ]
+      },
+      {
+        "number": 12,
+        "title": "Projects & Problem Solving",
+        "description": "Break a small task into manageable steps, test assumptions, and build a useful command-line program.",
+        "notes": [
+          "Start by stating the inputs, expected outputs, and edge cases. Decompose the task into small functions whose names describe their purpose.",
+          "Validate external input before using it. Catch a narrow exception such as ValueError when converting user-provided text to a number, and explain the issue clearly.",
+          "Test normal cases and boundary cases, then refine the design. For larger projects, add automated tests and keep application logic separate from input/output where practical."
+        ],
+        "code": "def average(values):\n    if not values:\n        raise ValueError(\"values must not be empty\")\n    return sum(values) / len(values)\n\nprint(average([4, 6, 8]))",
+        "output": "6.0",
+        "takeaways": [
+          "Define the problem and edge cases before writing the full solution.",
+          "Small functions and clear validation make projects easier to debug.",
+          "Test both typical inputs and cases that should fail."
+        ]
+      }
+    ]
+  },
+  "datascience": {
+    "title": "Data Science",
+    "description": "An approachable introduction to the data science workflow, trustworthy data, exploration, modeling, and responsible evaluation.",
+    "modules": [
+      {
+        "number": 1,
+        "title": "The Data Science Workflow",
+        "description": "Learn how a question becomes a data-backed analysis, and why iteration and context matter.",
+        "notes": [
+          "A typical workflow starts with a decision or question, then collects or accesses relevant data, inspects and prepares it, explores patterns, and communicates results. The steps often repeat as new questions arise.",
+          "Define the unit of observation and what each row represents before analyzing a table. A dataset can be technically correct yet unsuitable for the question if its population, time period, or measurements do not match.",
+          "Keep a record of data sources, assumptions, and transformations so results can be checked and reproduced. An observed association alone does not establish that one factor caused another."
+        ],
+        "code": "records = [{\"day\": \"Mon\", \"visits\": 12}, {\"day\": \"Tue\", \"visits\": 15}]\ntotal_visits = sum(row[\"visits\"] for row in records)\nprint(f\"Rows: {len(records)}, total visits: {total_visits}\")",
+        "output": "Rows: 2, total visits: 27",
+        "takeaways": [
+          "Begin with a well-defined question and understand what each observation represents.",
+          "Data preparation and analysis are iterative, not a one-way checklist.",
+          "Record assumptions and avoid interpreting correlation as proof of causation."
+        ]
+      },
+      {
+        "number": 2,
+        "title": "Data Types & Quality",
+        "description": "Recognize common data types and inspect missing, inconsistent, or implausible values.",
+        "notes": [
+          "Numeric measurements, categories, dates, text, and identifiers have different meanings. A number used as an ID is usually a label, not a quantity suitable for arithmetic.",
+          "Quality checks include missing values, duplicate records, inconsistent units or labels, invalid ranges, and parsing errors. A missing value is not automatically zero, and the right treatment depends on why it is missing and the task.",
+          "Clean values without erasing useful information: preserve raw data when possible, document transformations, and verify the result. The small example uses Python's standard library; real tables may use tools such as pandas."
+        ],
+        "code": "rows = [{\"id\": \"A1\", \"age\": 20}, {\"id\": \"A2\", \"age\": None}, {\"id\": \"A1\", \"age\": 20}]\nmissing_ages = sum(row[\"age\"] is None for row in rows)\nduplicate_rows = len(rows) - len({(row[\"id\"], row[\"age\"]) for row in rows})\nprint(missing_ages, duplicate_rows)",
+        "output": "1 1",
+        "takeaways": [
+          "Interpret a field by its meaning, not merely by how it is stored.",
+          "Missingness, duplicates, and invalid values require investigation before treatment.",
+          "Preserve raw data and document any cleaning decisions."
+        ]
+      },
+      {
+        "number": 3,
+        "title": "Descriptive Statistics",
+        "description": "Summarize a numeric sample using center, spread, and a careful look at outliers.",
+        "notes": [
+          "The mean uses every value but can be pulled by extreme observations; the median is the middle after sorting and is often more robust for skewed data. Neither summary replaces inspecting the distribution.",
+          "Range and standard deviation describe spread in different ways. Standard deviation is expressed in the original measurement units and can also be sensitive to outliers.",
+          "These summaries describe the values provided, not necessarily a wider population. Inference requires attention to sampling design, uncertainty, and assumptions."
+        ],
+        "code": "from statistics import mean, median, pstdev\n\nvalues = [2, 4, 4, 10]\nprint(mean(values), median(values), round(pstdev(values), 2))",
+        "output": "5 4.0 2.87",
+        "takeaways": [
+          "Use more than one summary to understand center and spread.",
+          "The median can better represent a skewed sample, while the mean is sensitive to extremes.",
+          "Descriptive statistics alone do not establish population-level conclusions."
+        ]
+      },
+      {
+        "number": 4,
+        "title": "Visualization",
+        "description": "Choose a clear chart that matches the question, data type, and audience.",
+        "notes": [
+          "Bar charts compare categories, histograms show the distribution of a numeric variable, and line charts commonly show values across an ordered time axis. Chart choice should follow the question rather than decoration.",
+          "Use descriptive titles, axis labels, units, and honest scales. Avoid visual choices that exaggerate differences, and distinguish missing values from true zeros.",
+          "This example uses Matplotlib, a widely used third-party library; install it in the active Python environment with pip if needed. In a graphical or notebook environment, show() displays the chart; some servers instead need a saved image."
+        ],
+        "code": "import matplotlib.pyplot as plt\n\ndays = [\"Mon\", \"Tue\", \"Wed\"]\nvisits = [12, 15, 11]\nplt.plot(days, visits, marker=\"o\")\nplt.title(\"Daily visits\")\nplt.xlabel(\"Day\")\nplt.ylabel(\"Visits\")\nplt.show()",
+        "output": "Displays a labeled line chart of visits for Monday, Tuesday, and Wednesday.",
+        "takeaways": [
+          "Match the chart type to the variable and comparison you want to show.",
+          "Label axes, units, and context so a chart can be read accurately.",
+          "Visualization can reveal patterns but does not by itself explain their causes."
+        ]
+      },
+      {
+        "number": 5,
+        "title": "Introduction to Supervised Learning",
+        "description": "Understand features, labels, and a simple regression model that learns from examples.",
+        "notes": [
+          "In supervised learning, examples include features (inputs) and a target label or value to predict. Classification predicts categories; regression predicts numeric values.",
+          "A model learns patterns from training data and then applies them to new inputs. A simple model can capture only simple relationships, and a close fit on training examples does not guarantee good performance on unseen data.",
+          "This example uses scikit-learn, which must be installed in the active Python environment. Its tiny synthetic dataset demonstrates API mechanics, not a reliable real-world relationship."
+        ],
+        "code": "from sklearn.linear_model import LinearRegression\n\n# One feature: hours studied; target: synthetic score.\nX = [[1], [2], [3]]\ny = [2, 4, 6]\nmodel = LinearRegression().fit(X, y)\nprint(round(model.predict([[4]])[0], 1))",
+        "output": "8.0",
+        "takeaways": [
+          "Features are inputs and the target is the value or category being predicted.",
+          "Train on examples, then assess predictions on data not used for fitting.",
+          "A toy dataset teaches the mechanics but cannot justify broad real-world conclusions."
+        ]
+      },
+      {
+        "number": 6,
+        "title": "Evaluation & Ethics",
+        "description": "Evaluate predictions carefully and consider fairness, privacy, and consequences of use.",
+        "notes": [
+          "For classification, accuracy is the fraction of predictions that are correct, but it can hide poor performance on a rare class. Precision, recall, and a confusion matrix can provide additional context; metric choice should reflect the cost of different errors.",
+          "Keep evaluation data separate from training data to estimate performance on unseen cases. Repeatedly tuning decisions against the test set can leak information and make the estimate optimistic.",
+          "Check whether data and labels reflect historical or sampling biases, protect sensitive information, and consider who may be harmed by errors. Fairness has multiple definitions and trade-offs; a metric alone cannot settle an ethical decision."
+        ],
+        "code": "actual = [1, 0, 1, 1]\npredicted = [1, 0, 0, 1]\ncorrect = sum(a == p for a, p in zip(actual, predicted))\naccuracy = correct / len(actual)\nprint(f\"Accuracy: {accuracy:.2f}\")",
+        "output": "Accuracy: 0.75",
+        "takeaways": [
+          "Choose evaluation metrics that reflect the task and the consequences of errors.",
+          "Use held-out data for an honest check and avoid tuning repeatedly on the test set.",
+          "Responsible data science considers privacy, bias, affected people, and limits of the model."
+        ]
+      }
+    ]
+  }
+}

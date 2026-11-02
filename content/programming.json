@@ -1,0 +1,410 @@
+{
+  "java": {
+    "title": "Java",
+    "description": "A beginner-to-intermediate introduction to Java, from setup and core syntax through object-oriented programming.",
+    "modules": [
+      {
+        "title": "Setup and first program",
+        "description": "Understand the Java development kit, source files, compilation, and the entry point of a program.",
+        "notes": [
+          "Install a Java Development Kit (JDK), which includes the compiler javac and the java runtime launcher. Check an installation with java --version and javac --version.",
+          "Java source is saved in a .java file. javac compiles source into bytecode in a .class file, and java runs that class on the Java Virtual Machine.",
+          "A basic application starts in public static void main(String[] args). Java is case-sensitive, and statements generally end with semicolons."
+        ],
+        "code": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, Java!\");\n    }\n}",
+        "output": "Hello, Java!",
+        "takeaways": [
+          "Save this example as Main.java because the public class is named Main.",
+          "Compile with javac Main.java, then run with java Main.",
+          "System.out.println prints a line of text."
+        ]
+      },
+      {
+        "title": "Types and variables",
+        "description": "Declare values using Java's primitive types and reference types, and use expressions with compatible types.",
+        "notes": [
+          "A variable declaration gives a value a name and type, for example int count = 3. Java checks types at compile time; incompatible assignments must be converted explicitly when appropriate.",
+          "Common primitive types include int for whole numbers, double for decimal values, boolean for true or false, and char for one UTF-16 code unit. String is a reference type, not a primitive.",
+          "Use final for a local variable that should not be reassigned. Descriptive names and clear numeric types make intent easier to understand."
+        ],
+        "code": "public class Main {\n    public static void main(String[] args) {\n        int apples = 3;\n        double price = 1.5;\n        boolean ripe = true;\n        String label = \"apples\";\n        System.out.println(apples + \" \" + label + \", total $\" + (apples * price) + \", ripe: \" + ripe);\n    }\n}",
+        "output": "3 apples, total $4.5, ripe: true",
+        "takeaways": [
+          "Choose a type that represents the value and operations you need.",
+          "String values can be combined with + for readable output.",
+          "A variable's declared type constrains which values it can hold."
+        ]
+      },
+      {
+        "title": "Conditions and loops",
+        "description": "Choose between branches and repeat work with for and while loops.",
+        "notes": [
+          "An if/else statement selects a branch using a boolean condition. Relational operators include <, <=, ==, and !=; use && and || to combine boolean conditions.",
+          "A for loop is useful when the number of iterations is known or controlled by a counter. A while loop repeats while its condition remains true.",
+          "Update loop state so the condition eventually becomes false. Braces group multiple statements and help make control flow clear."
+        ],
+        "code": "public class Main {\n    public static void main(String[] args) {\n        int total = 0;\n        for (int n = 1; n <= 5; n++) {\n            if (n % 2 == 0) {\n                total += n;\n            }\n        }\n        System.out.println(\"Sum of even numbers: \" + total);\n    }\n}",
+        "output": "Sum of even numbers: 6",
+        "takeaways": [
+          "The remainder operator % can test divisibility, as in n % 2 == 0.",
+          "A for loop combines initialization, continuation condition, and update.",
+          "Use braces for predictable, readable branching and looping."
+        ]
+      },
+      {
+        "title": "Arrays and strings",
+        "description": "Store fixed-size sequences in arrays and work with immutable text using String methods.",
+        "notes": [
+          "An array has a fixed length and stores elements of one declared type. Its first index is 0, and its final valid index is length - 1.",
+          "The enhanced for loop visits each element when its index is not needed. Accessing an invalid index causes an ArrayIndexOutOfBoundsException.",
+          "String objects are immutable: methods such as toUpperCase return a new string rather than modifying the original. Use equals to compare string contents."
+        ],
+        "code": "public class Main {\n    public static void main(String[] args) {\n        String[] names = {\"Ada\", \"Linus\", \"Grace\"};\n        for (String name : names) {\n            System.out.println(name.toUpperCase());\n        }\n        System.out.println(\"Count: \" + names.length);\n    }\n}",
+        "output": "ADA\nLINUS\nGRACE\nCount: 3",
+        "takeaways": [
+          "Array indices start at zero and array length is fixed after creation.",
+          "Prefer enhanced for loops when you only need each element.",
+          "Compare strings with equals rather than == when checking text content."
+        ]
+      },
+      {
+        "title": "Methods and parameters",
+        "description": "Organize logic into reusable methods with explicit parameters and return types.",
+        "notes": [
+          "A method signature includes its name and parameter types; its declaration also specifies a return type. Use void when a method does not return a value.",
+          "Arguments are passed to parameters when a method is called. Java passes values by value, including a copy of a reference when the argument is an object reference.",
+          "Methods can be overloaded by using the same name with different parameter lists. A return statement provides a result and exits the method."
+        ],
+        "code": "public class Main {\n    static int square(int value) {\n        return value * value;\n    }\n\n    public static void main(String[] args) {\n        int result = square(6);\n        System.out.println(\"6 squared is \" + result);\n    }\n}",
+        "output": "6 squared is 36",
+        "takeaways": [
+          "Give each method one clear responsibility and a descriptive name.",
+          "The declared return type must match the value returned.",
+          "static methods can be called from main without creating an object."
+        ]
+      },
+      {
+        "title": "Classes and objects",
+        "description": "Model data and behavior together with classes, constructors, fields, and instance methods.",
+        "notes": [
+          "A class defines a type; an object is an instance of that class. Fields store object state, and methods implement behavior.",
+          "A constructor initializes a new object and has the same name as the class with no return type. The new keyword creates an instance.",
+          "Encapsulation keeps fields private and exposes intentional operations through methods. The this keyword refers to the current instance."
+        ],
+        "code": "class Counter {\n    private int value;\n\n    Counter(int start) {\n        this.value = start;\n    }\n\n    void increment() {\n        value++;\n    }\n\n    int getValue() {\n        return value;\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Counter counter = new Counter(4);\n        counter.increment();\n        System.out.println(\"Value: \" + counter.getValue());\n    }\n}",
+        "output": "Value: 5",
+        "takeaways": [
+          "Constructors establish valid initial object state.",
+          "Private fields protect implementation details from direct outside changes.",
+          "Create objects with new and use their public methods to request behavior."
+        ]
+      }
+    ]
+  },
+  "c": {
+    "title": "C",
+    "description": "Learn the foundations of C, including compilation, control flow, arrays, pointers, structures, and files.",
+    "modules": [
+      {
+        "title": "C basics and compilation",
+        "description": "Write a small C program and compile it into an executable.",
+        "notes": [
+          "C is a compiled language. Save source in a .c file and compile it with a C compiler such as gcc, for example gcc -std=c11 -Wall -Wextra main.c -o main.",
+          "The #include directive makes standard library declarations available. stdio.h declares input/output functions such as printf.",
+          "Execution begins at main. A return value of 0 conventionally reports successful completion to the operating system."
+        ],
+        "code": "#include <stdio.h>\n\nint main(void) {\n    printf(\"Hello, C!\\n\");\n    return 0;\n}",
+        "output": "Hello, C!",
+        "takeaways": [
+          "Save the program as main.c and compile it before running it.",
+          "Include the standard header for the library functions you use.",
+          "Use int main(void) when the program takes no command-line arguments."
+        ]
+      },
+      {
+        "title": "Types, variables, and operators",
+        "description": "Represent values with C's basic types and form expressions with arithmetic and comparison operators.",
+        "notes": [
+          "Declare a variable before use, such as int count = 4;. Common basic types include char, int, float, and double; exact integer ranges depend on the implementation.",
+          "Arithmetic operators include +, -, *, /, and %. Integer division discards the fractional part, while division involving a floating-point operand can retain a fraction.",
+          "Use meaningful initial values and format specifiers that match the values passed to printf, such as %d for int and %.1f for double."
+        ],
+        "code": "#include <stdio.h>\n\nint main(void) {\n    int items = 3;\n    double unit_price = 2.5;\n    double total = items * unit_price;\n    printf(\"Items: %d, total: %.1f\\n\", items, total);\n    return 0;\n}",
+        "output": "Items: 3, total: 7.5",
+        "takeaways": [
+          "Declare variables with a type that suits their values.",
+          "Be mindful of integer division when calculating fractions.",
+          "Match each printf conversion specifier to the corresponding argument type."
+        ]
+      },
+      {
+        "title": "Branching and loops",
+        "description": "Use conditions to select behavior and loops to repeat a calculation.",
+        "notes": [
+          "An if/else statement evaluates an expression as true or false; in C, zero is false and nonzero is true. Comparison operators include ==, !=, <, and >=.",
+          "A for loop groups initialization, a continuation condition, and an update. A while loop checks its condition before each iteration.",
+          "The break statement exits a loop, while continue skips to its next iteration. Use braces to make multi-statement blocks explicit."
+        ],
+        "code": "#include <stdio.h>\n\nint main(void) {\n    int sum = 0;\n    for (int n = 1; n <= 5; n++) {\n        if (n % 2 == 0) {\n            sum += n;\n        }\n    }\n    printf(\"Even-number sum: %d\\n\", sum);\n    return 0;\n}",
+        "output": "Even-number sum: 6",
+        "takeaways": [
+          "Use == to compare values and = to assign them; they are different operators.",
+          "A loop needs a condition and state update that allow it to finish.",
+          "The remainder operator is useful for checking even and odd integers."
+        ]
+      },
+      {
+        "title": "Arrays and strings",
+        "description": "Work with fixed-size arrays and null-terminated character strings safely.",
+        "notes": [
+          "An array stores a fixed number of same-type elements contiguously. C does not automatically check array bounds, so loops must stay within valid indices 0 through length - 1.",
+          "A C string is a char array ending with the null character '\\0'. Reserve space for that terminator as well as the visible characters.",
+          "Use standard string functions such as strlen from string.h to inspect strings. Avoid unbounded input functions; this example uses known, bounded literals."
+        ],
+        "code": "#include <stdio.h>\n#include <string.h>\n\nint main(void) {\n    int scores[] = {8, 9, 10};\n    size_t count = sizeof scores / sizeof scores[0];\n    char word[] = \"C\";\n    int sum = 0;\n    for (size_t i = 0; i < count; i++) {\n        sum += scores[i];\n    }\n    printf(\"Average: %.1f, word length: %zu\\n\", (double) sum / count, strlen(word));\n    return 0;\n}",
+        "output": "Average: 9.0, word length: 1",
+        "takeaways": [
+          "C arrays do not carry bounds checks; track their length carefully.",
+          "Every C string needs room for its terminating null character.",
+          "Use size_t for sizes and indices returned by standard size-related functions."
+        ]
+      },
+      {
+        "title": "Functions and pointers",
+        "description": "Split programs into functions and use pointers to refer to objects when indirect access is needed.",
+        "notes": [
+          "A function prototype declares a function's name, return type, and parameter types before use. Keep declarations and definitions consistent.",
+          "A pointer stores an address. The address-of operator & obtains an object's address, and the dereference operator * accesses the object at a valid pointer.",
+          "C passes function arguments by value. Passing a pointer lets a function modify the caller's object; only dereference pointers that point to valid objects."
+        ],
+        "code": "#include <stdio.h>\n\nvoid add_one(int *value) {\n    (*value)++;\n}\n\nint main(void) {\n    int count = 4;\n    add_one(&count);\n    printf(\"Count: %d\\n\", count);\n    return 0;\n}",
+        "output": "Count: 5",
+        "takeaways": [
+          "Use functions to give reusable operations clear inputs and outputs.",
+          "Use & to pass an object's address and * to access the pointed-to object.",
+          "Never dereference an uninitialized or otherwise invalid pointer."
+        ]
+      },
+      {
+        "title": "Structures and files",
+        "description": "Group related data in structures and perform basic file output with checked resources.",
+        "notes": [
+          "A struct defines a composite type whose fields can have different types. Access a structure variable's fields with the dot operator.",
+          "The standard I/O library represents an open file with FILE *. fopen returns NULL if opening fails; check the result before using it.",
+          "Check write operations when reliability matters, and close successfully opened files with fclose. This example writes a fixed, harmless line to a local file."
+        ],
+        "code": "#include <stdio.h>\n\ntypedef struct {\n    const char *name;\n    int credits;\n} Course;\n\nint main(void) {\n    Course course = {\"C Basics\", 3};\n    FILE *file = fopen(\"course.txt\", \"w\");\n    if (file == NULL) {\n        perror(\"course.txt\");\n        return 1;\n    }\n    if (fprintf(file, \"%s: %d credits\\n\", course.name, course.credits) < 0) {\n        fclose(file);\n        return 1;\n    }\n    if (fclose(file) != 0) {\n        return 1;\n    }\n    printf(\"Wrote %s (%d credits)\\n\", course.name, course.credits);\n    return 0;\n}",
+        "output": "Wrote C Basics (3 credits)\nCreates course.txt containing: C Basics: 3 credits",
+        "takeaways": [
+          "Use structures to group values that describe one entity.",
+          "Check fopen before reading from or writing to a file.",
+          "Close every successfully opened file and handle possible write failures."
+        ]
+      }
+    ]
+  },
+  "cpp": {
+    "title": "C++",
+    "description": "Build C++ skills from basic syntax through functions, standard containers, classes, and the STL.",
+    "modules": [
+      {
+        "title": "C++ basics and output",
+        "description": "Compile a small C++ program and use the standard output stream.",
+        "notes": [
+          "C++ source files commonly use .cpp. A compiler such as g++ can build a program with g++ -std=c++17 -Wall -Wextra main.cpp -o main.",
+          "Include standard library headers for the facilities used. The iostream header provides std::cout and std::endl or the newline character for output.",
+          "Execution begins at main. Returning 0 signals successful completion; using std:: names makes library identifiers explicit."
+        ],
+        "code": "#include <iostream>\n\nint main() {\n    std::cout << \"Hello, C++!\\n\";\n    return 0;\n}",
+        "output": "Hello, C++!",
+        "takeaways": [
+          "Save the source as main.cpp and compile it with a C++ compiler.",
+          "Use std::cout with the insertion operator << to print output.",
+          "C++ programs conventionally return 0 from main on success."
+        ]
+      },
+      {
+        "title": "Types, variables, and control flow",
+        "description": "Use typed variables and conditionals and loops to express decisions and repetition.",
+        "notes": [
+          "C++ has built-in types such as int, double, char, and bool, as well as library types such as std::string. Initialize variables when declaring them.",
+          "Use const when a value should not be modified through that name. Type deduction with auto is useful when the initializer makes the intended type clear.",
+          "if/else selects a path based on a condition, while loops repeat statements. A for loop is commonly used for a known sequence of iterations."
+        ],
+        "code": "#include <iostream>\n\nint main() {\n    const int limit = 5;\n    int sum = 0;\n    for (int n = 1; n <= limit; ++n) {\n        if (n % 2 == 0) {\n            sum += n;\n        }\n    }\n    std::cout << \"Even-number sum: \" << sum << '\\n';\n    return 0;\n}",
+        "output": "Even-number sum: 6",
+        "takeaways": [
+          "Initialize variables and use const to communicate fixed values.",
+          "C++ uses == for comparison and = for assignment.",
+          "Loop conditions and updates should make progress toward termination."
+        ]
+      },
+      {
+        "title": "Functions and references",
+        "description": "Define reusable functions and pass values by reference when a function should work with an existing object.",
+        "notes": [
+          "A function declaration states its return type and parameter types; a definition provides its body. Put a declaration before a call when the definition appears later.",
+          "A reference is an alias for an existing object and must be initialized. A non-const reference can modify its referent; a const reference is useful for efficient read-only access.",
+          "Pass small built-in types by value when a copy is simple. References avoid copying larger objects and can express intended modification."
+        ],
+        "code": "#include <iostream>\n\nvoid addOne(int& value) {\n    ++value;\n}\n\nint main() {\n    int count = 4;\n    addOne(count);\n    std::cout << \"Count: \" << count << '\\n';\n    return 0;\n}",
+        "output": "Count: 5",
+        "takeaways": [
+          "A function parameter declared T& can modify the caller's object.",
+          "Use const T& for read-only access to larger objects without copying.",
+          "Give functions clear return types and parameter contracts."
+        ]
+      },
+      {
+        "title": "Vectors and strings",
+        "description": "Use standard library containers for resizable sequences and text rather than managing raw arrays unnecessarily.",
+        "notes": [
+          "std::vector<T> stores a resizable sequence of elements of type T. Its size() reports the number of elements; valid indices range from zero to size() - 1.",
+          "A range-based for loop visits elements without explicit index arithmetic. Use references in the loop when modifying elements, or const references for read-only access.",
+          "std::string represents text and provides methods such as size(). Include vector and string headers to use these types."
+        ],
+        "code": "#include <iostream>\n#include <string>\n#include <vector>\n\nint main() {\n    std::vector<int> scores{8, 9, 10};\n    int sum = 0;\n    for (int score : scores) {\n        sum += score;\n    }\n    std::string topic = \"C++\";\n    std::cout << \"Average: \" << static_cast<double>(sum) / scores.size()\n              << \", topic length: \" << topic.size() << '\\n';\n    return 0;\n}",
+        "output": "Average: 9, topic length: 3",
+        "takeaways": [
+          "Prefer std::vector for a resizable collection of same-type values.",
+          "Use range-based for loops when direct indexed access is unnecessary.",
+          "Use std::string for ordinary text instead of manually managed character buffers."
+        ]
+      },
+      {
+        "title": "Classes and encapsulation",
+        "description": "Define a class that holds private state and exposes a small, useful public interface.",
+        "notes": [
+          "A class combines data members and member functions. Members declared private are accessible only through the class's own permitted operations.",
+          "A constructor initializes an object and can use a member initializer list. The public section defines operations available to callers.",
+          "Create an object by declaring a variable of the class type. Member functions can read or update the object's state while preserving its invariants."
+        ],
+        "code": "#include <iostream>\n\nclass Counter {\nprivate:\n    int value;\npublic:\n    explicit Counter(int start) : value(start) {}\n    void increment() { ++value; }\n    int getValue() const { return value; }\n};\n\nint main() {\n    Counter counter(4);\n    counter.increment();\n    std::cout << \"Value: \" << counter.getValue() << '\\n';\n    return 0;\n}",
+        "output": "Value: 5",
+        "takeaways": [
+          "Keep implementation state private and provide purposeful public methods.",
+          "Use initializer lists to initialize members in constructors.",
+          "Mark read-only member functions const so they promise not to modify object state."
+        ]
+      },
+      {
+        "title": "The STL: algorithms and iterators",
+        "description": "Use standard algorithms with container iterators to express common operations clearly.",
+        "notes": [
+          "The Standard Template Library (STL) provides containers, iterators, and algorithms. Include the specific headers needed, such as algorithm and numeric.",
+          "std::sort rearranges a range specified by its beginning and end iterators. For a vector, begin() and end() describe the half-open range containing all elements.",
+          "std::accumulate in numeric computes a fold such as a sum. Algorithms work with ranges, helping separate the operation from the underlying container."
+        ],
+        "code": "#include <algorithm>\n#include <iostream>\n#include <numeric>\n#include <vector>\n\nint main() {\n    std::vector<int> values{4, 1, 3, 2};\n    std::sort(values.begin(), values.end());\n    int sum = std::accumulate(values.begin(), values.end(), 0);\n    for (int value : values) {\n        std::cout << value << ' ';\n    }\n    std::cout << \"| sum: \" << sum << '\\n';\n    return 0;\n}",
+        "output": "1 2 3 4 | sum: 10",
+        "takeaways": [
+          "Use established standard algorithms instead of rewriting common loops.",
+          "Iterator ranges conventionally include the first iterator and exclude the last.",
+          "Include the standard header that declares each library feature you use."
+        ]
+      }
+    ]
+  },
+  "javascript": {
+    "title": "JavaScript",
+    "description": "Learn JavaScript from language basics through functions, collections, and browser DOM events.",
+    "modules": [
+      {
+        "title": "JavaScript basics",
+        "description": "Run a first JavaScript program and understand statements, expressions, and console output.",
+        "notes": [
+          "JavaScript can run in a browser or in a server-side runtime such as Node.js. A .js file can be run with node main.js when Node.js is installed.",
+          "Use console.log to write diagnostic or learning output. Semicolons are often optional because of automatic semicolon insertion, but consistent style helps avoid ambiguity.",
+          "JavaScript is case-sensitive and executes statements in order. Comments can document intent without changing program behavior."
+        ],
+        "code": "console.log(\"Hello, JavaScript!\");",
+        "output": "Hello, JavaScript!",
+        "takeaways": [
+          "Save the example as a .js file and run it with Node.js, or paste it into a browser console.",
+          "Use console.log to inspect values while learning and debugging.",
+          "Capitalization matters in JavaScript identifiers."
+        ]
+      },
+      {
+        "title": "Variables and types",
+        "description": "Declare variables with let and const and recognize JavaScript's common value types.",
+        "notes": [
+          "Use const for bindings that will not be reassigned and let for bindings that will. Avoid var in new code because its function-scoped behavior can be surprising.",
+          "JavaScript is dynamically typed: a binding can hold values of different types over time. Common values include number, string, boolean, undefined, and objects; null represents an intentional absence of an object value.",
+          "Template literals use backticks and ${expression} for readable string interpolation. typeof can help inspect many primitive values, though typeof null is the historical exception and returns \"object\"."
+        ],
+        "code": "const product = \"notebook\";\nlet quantity = 3;\nconst inStock = true;\nconsole.log(`${quantity} ${product}s in stock: ${inStock}`);\nconsole.log(typeof quantity, typeof product);",
+        "output": "3 notebooks in stock: true\nnumber string",
+        "takeaways": [
+          "Prefer const by default and use let when reassignment is necessary.",
+          "JavaScript values have types even though variables are not declared with fixed types.",
+          "Template literals interpolate values using ${...}."
+        ]
+      },
+      {
+        "title": "Operators and control flow",
+        "description": "Combine expressions, make decisions, and repeat operations using JavaScript operators and loops.",
+        "notes": [
+          "Arithmetic operators include +, -, *, /, and %. The + operator adds numbers or concatenates strings depending on its operands, so explicit conversions can prevent confusion.",
+          "Use === and !== for strict equality in most cases; they compare without coercing differing types. Logical operators include &&, ||, and !.",
+          "if/else selects a path, and for or while repeats work. A loop should update its state so its condition eventually becomes false."
+        ],
+        "code": "const limit = 5;\nlet sum = 0;\nfor (let n = 1; n <= limit; n++) {\n  if (n % 2 === 0) {\n    sum += n;\n  }\n}\nconsole.log(`Even-number sum: ${sum}`);",
+        "output": "Even-number sum: 6",
+        "takeaways": [
+          "Prefer strict equality (===) to avoid implicit type coercion surprises.",
+          "Use conditionals to select behavior and loops to repeat a bounded operation.",
+          "The remainder operator can test whether a number is divisible by two."
+        ]
+      },
+      {
+        "title": "Functions",
+        "description": "Create reusable functions using declarations, parameters, and return values.",
+        "notes": [
+          "A function declaration names a reusable block of code and specifies parameters in parentheses. Call it with arguments to supply values for those parameters.",
+          "return sends a value back to the caller and ends that function invocation. If no return value is specified, the result is undefined.",
+          "Arrow functions offer concise syntax and are commonly assigned to const bindings. They also use lexical this, which differs from this in some traditional function calls."
+        ],
+        "code": "function rectangleArea(width, height) {\n  return width * height;\n}\n\nconst area = rectangleArea(4, 3);\nconsole.log(`Area: ${area}`);",
+        "output": "Area: 12",
+        "takeaways": [
+          "Use parameters to make a function work with different inputs.",
+          "Return a result when the caller needs to use the computation.",
+          "Keep functions focused and name them according to their purpose."
+        ]
+      },
+      {
+        "title": "Arrays and objects",
+        "description": "Represent ordered collections with arrays and related named data with objects.",
+        "notes": [
+          "Arrays are ordered collections with zero-based indices. Common methods include push to add to the end and map to create a new array by transforming each element.",
+          "Objects store properties as key-value pairs. Dot notation accesses a property when its name is known, while bracket notation supports dynamic property names.",
+          "const prevents reassignment of the array or object binding, but it does not make the contained object or array immutable. Avoid mutating shared data unintentionally."
+        ],
+        "code": "const scores = [8, 9, 10];\nconst doubled = scores.map(score => score * 2);\nconst learner = { name: \"Ravi\", level: \"beginner\" };\nconsole.log(`${learner.name}: ${doubled.join(\", \")}`);",
+        "output": "Ravi: 16, 18, 20",
+        "takeaways": [
+          "Use arrays for ordered sequences and objects for named properties.",
+          "map returns a transformed array without changing the original array.",
+          "A const object binding can still refer to an object whose properties are mutable."
+        ]
+      },
+      {
+        "title": "DOM and events",
+        "description": "Connect JavaScript to a web page by selecting elements and responding to user events.",
+        "notes": [
+          "The Document Object Model (DOM) represents a page as objects. Methods such as document.querySelector select elements using CSS selectors; check that a selection succeeded before using it.",
+          "addEventListener registers a callback for an event such as click. The callback runs when the event occurs, keeping interaction logic separate from markup.",
+          "textContent sets or reads plain text safely. Avoid inserting untrusted strings with innerHTML, which interprets content as markup."
+        ],
+        "code": "<!doctype html>\n<html lang=\"en\">\n  <body>\n    <button id=\"greet\" type=\"button\">Greet</button>\n    <p id=\"message\">Ready</p>\n    <script>\n      const button = document.querySelector(\"#greet\");\n      const message = document.querySelector(\"#message\");\n      if (button && message) {\n        button.addEventListener(\"click\", () => {\n          message.textContent = \"Hello from the page!\";\n        });\n      }\n    </script>\n  </body>\n</html>",
+        "output": "Before clicking: Ready\nAfter clicking Greet: Hello from the page!",
+        "takeaways": [
+          "Use querySelector to find page elements and account for a missing match.",
+          "Register event handlers with addEventListener instead of embedding interaction code in markup.",
+          "Use textContent for plain user-visible text rather than interpreting strings as HTML."
+        ]
+      }
+    ]
+  }
+}

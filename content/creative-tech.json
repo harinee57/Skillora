@@ -1,0 +1,224 @@
+{
+  "gamedevelopment": {
+    "title": "Game Development",
+    "description": "Build a small game from its core update loop through input, movement, collision, scoring, and a polished, tested finish.",
+    "modules": [
+      {
+        "number": 1,
+        "title": "The Game Loop",
+        "description": "Understand how games repeatedly update their world and present the result.",
+        "notes": [
+          "A game loop alternates between updating game state and rendering that state, repeating while the game is active.",
+          "Time-based updates use elapsed time (delta time) so motion can be expressed in units per second rather than per frame.",
+          "Keep state changes in the update step and make rendering a view of the current state; this separation makes behavior easier to test."
+        ],
+        "code": "const state = { x: 0, speed: 4 };\nfunction update(dt) { state.x += state.speed * dt; }\nfunction render() { return `Player at ${state.x.toFixed(1)}`; }\nupdate(0.5);\nconsole.log(render());",
+        "output": "Player at 2.0",
+        "takeaways": [
+          "A game loop repeatedly updates then renders.",
+          "Use elapsed seconds to make movement independent of frame rate.",
+          "Separate state updates from presentation."
+        ]
+      },
+      {
+        "number": 2,
+        "title": "Coordinates and Input",
+        "description": "Represent positions consistently and translate player input into game actions.",
+        "notes": [
+          "A 2D position is commonly represented by x and y values; choose a coordinate convention and apply it consistently.",
+          "Input handling should record intent, such as a direction or pressed action, for the update step to consume.",
+          "Decoupling input from movement lets the same movement rules work with keyboard, touch, or automated test input."
+        ],
+        "code": "const player = { x: 3, y: 2 };\nconst input = { right: true, up: false };\nconst direction = { x: Number(input.right), y: Number(input.up) };\nplayer.x += direction.x;\nplayer.y -= direction.y;\nconsole.log(player);",
+        "output": "{ x: 4, y: 2 }",
+        "takeaways": [
+          "Store a 2D position as a pair of coordinates.",
+          "Convert input into a clear action or direction.",
+          "Keep input collection separate from movement rules."
+        ]
+      },
+      {
+        "number": 3,
+        "title": "Player Movement",
+        "description": "Move a character smoothly and keep it within the play area.",
+        "notes": [
+          "Multiply speed by delta time when applying movement so a chosen speed has units such as pixels per second.",
+          "Normalize diagonal direction vectors when equal diagonal and straight-line speeds are desired; otherwise diagonals are faster.",
+          "Clamp positions to the play area's bounds to prevent a player from leaving the intended region."
+        ],
+        "code": "function move(player, dx, dy, speed, dt, width, height) {\n  const length = Math.hypot(dx, dy) || 1;\n  player.x = Math.max(0, Math.min(width, player.x + dx / length * speed * dt));\n  player.y = Math.max(0, Math.min(height, player.y + dy / length * speed * dt));\n}\nconst p = { x: 2, y: 2 };\nmove(p, 1, 0, 10, 0.5, 10, 10);\nconsole.log(p);",
+        "output": "{ x: 7, y: 2 }",
+        "takeaways": [
+          "Scale movement by elapsed time.",
+          "Normalize direction when consistent diagonal speed matters.",
+          "Clamp coordinates to valid play-area bounds."
+        ]
+      },
+      {
+        "number": 4,
+        "title": "Collision Detection",
+        "description": "Detect when simple game objects overlap and respond to the contact.",
+        "notes": [
+          "For axis-aligned rectangles, overlap occurs when their horizontal and vertical intervals both intersect.",
+          "Use consistent rectangle dimensions and coordinate meanings, such as x and y for the top-left corner.",
+          "Collision detection identifies contact; a separate response decides what happens, such as stopping movement or collecting an item."
+        ],
+        "code": "function overlaps(a, b) {\n  return a.x < b.x + b.w && a.x + a.w > b.x &&\n         a.y < b.y + b.h && a.y + a.h > b.y;\n}\nconst player = { x: 1, y: 1, w: 2, h: 2 };\nconst coin = { x: 2, y: 2, w: 1, h: 1 };\nconsole.log(overlaps(player, coin));",
+        "output": "true",
+        "takeaways": [
+          "Rectangle overlap requires intersection on both axes.",
+          "Use one consistent coordinate and size convention.",
+          "Keep collision detection distinct from its gameplay response."
+        ]
+      },
+      {
+        "number": 5,
+        "title": "Score and Game State",
+        "description": "Track progress and represent transitions such as playing, winning, and losing.",
+        "notes": [
+          "Keep score and status in explicit state rather than inferring them from display text.",
+          "Events such as collecting an item can update score and remove or mark the item as collected.",
+          "A small set of named states (for example, ready, playing, gameOver) makes allowed transitions easier to reason about."
+        ],
+        "code": "const game = { score: 0, status: 'playing' };\nfunction collect(item) {\n  if (!item.collected) { item.collected = true; game.score += 10; }\n}\ncollect({ collected: false });\nconsole.log(`${game.status}: ${game.score}`);",
+        "output": "playing: 10",
+        "takeaways": [
+          "Represent score and status as explicit data.",
+          "Make one-time events idempotent to avoid duplicate rewards.",
+          "Name game states and manage their transitions deliberately."
+        ]
+      },
+      {
+        "number": 6,
+        "title": "Polish and Testing",
+        "description": "Improve feedback, check edge cases, and make a small game reliable and pleasant to play.",
+        "notes": [
+          "Clear feedback—such as a score change, brief animation, or restart prompt—helps players understand the result of an action.",
+          "Test boundary conditions including zero movement, maximum bounds, repeated collection, and game-over transitions.",
+          "Keep randomness controllable in tests by injecting values or a random-number function instead of relying on hidden global behavior.",
+          "A short playtest can reveal confusing controls and pacing issues that code-level checks do not catch."
+        ],
+        "code": "function clamp(value, min, max) { return Math.max(min, Math.min(max, value)); }\nconsole.assert(clamp(-2, 0, 10) === 0, 'lower bound');\nconsole.assert(clamp(12, 0, 10) === 10, 'upper bound');\nconsole.log('Boundary checks passed');",
+        "output": "Boundary checks passed (both assertions hold).",
+        "takeaways": [
+          "Test edge cases and game-state transitions, not only the happy path.",
+          "Give players clear feedback for important actions.",
+          "Playtest controls and pacing with real users when possible."
+        ]
+      }
+    ]
+  },
+  "webdevelopment": {
+    "title": "Web Development",
+    "description": "Learn the foundations of building accessible, responsive web pages with HTML, CSS, JavaScript, forms, and practical debugging.",
+    "modules": [
+      {
+        "number": 1,
+        "title": "HTML Structure",
+        "description": "Create meaningful page structure with semantic HTML elements.",
+        "notes": [
+          "HTML describes a document's structure and meaning; semantic elements communicate the role of content to browsers and assistive technologies.",
+          "A document should include a doctype, language, character encoding, viewport metadata, and a descriptive title.",
+          "Use headings in a logical hierarchy and choose elements such as main, nav, article, and footer according to their purpose."
+        ],
+        "code": "<!doctype html>\n<html lang=\"en\">\n<head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>Trail Notes</title></head>\n<body><header><h1>Trail Notes</h1></header><main><p>Explore nearby paths.</p></main></body>\n</html>",
+        "output": "A page titled “Trail Notes” displays a main heading and the text “Explore nearby paths.”",
+        "takeaways": [
+          "Use semantic elements to express content roles.",
+          "Include language, charset, viewport, and title metadata.",
+          "Keep heading levels meaningful and ordered."
+        ]
+      },
+      {
+        "number": 2,
+        "title": "CSS Selectors and Layout",
+        "description": "Style elements with selectors and arrange content using modern layout tools.",
+        "notes": [
+          "Selectors target elements by type, class, or relationship; classes are reusable hooks for styling groups of elements.",
+          "The cascade resolves competing declarations using origin, importance, specificity, and source order; avoid unnecessary specificity battles.",
+          "Flexbox is useful for one-dimensional alignment, while Grid is well suited to two-dimensional layouts.",
+          "The box model includes content, padding, border, and margin; box-sizing: border-box makes declared dimensions include padding and border."
+        ],
+        "code": "* { box-sizing: border-box; }\n.card-list { display: flex; gap: 1rem; }\n.card { padding: 1rem; border: 1px solid #aaa; }",
+        "output": "Elements with class card-list appear in a row with a 1rem gap; each card has padding and a border.",
+        "takeaways": [
+          "Use classes for reusable styling and understandable selectors.",
+          "Choose Flexbox or Grid based on the layout's dimensional needs.",
+          "Understand how the box model affects element size."
+        ]
+      },
+      {
+        "number": 3,
+        "title": "Responsive Design",
+        "description": "Adapt layouts to different viewport sizes with flexible sizing and media queries.",
+        "notes": [
+          "Responsive layouts combine flexible widths, intrinsic content sizing, and breakpoints chosen when the design needs to change.",
+          "The viewport meta tag lets mobile browsers use the device width as the layout viewport.",
+          "Media queries apply styles conditionally; start with a usable narrow layout and enhance it for wider screens.",
+          "Images should scale within their containers to avoid overflowing the page."
+        ],
+        "code": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n.grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }\n@media (min-width: 700px) { .grid { grid-template-columns: repeat(2, 1fr); } }\nimg { max-width: 100%; height: auto; }\n</style>",
+        "output": "The grid shows one column below 700px and two equal columns at 700px or wider; images scale to fit their containers.",
+        "takeaways": [
+          "Use flexible layouts before adding breakpoints.",
+          "Set the viewport for device-width rendering on mobile.",
+          "Use media queries to respond to content and viewport needs."
+        ]
+      },
+      {
+        "number": 4,
+        "title": "JavaScript and the DOM",
+        "description": "Select page elements and update their content in response to user actions.",
+        "notes": [
+          "The DOM is the browser's object representation of a document; JavaScript can query nodes and update their properties.",
+          "Use addEventListener to register behavior without embedding event-handler code in HTML attributes.",
+          "Prefer textContent for inserting plain text; assigning untrusted content to innerHTML can create cross-site scripting risks.",
+          "Check that a queried element exists when scripts may load before the relevant markup."
+        ],
+        "code": "<button id=\"count-button\">Add</button><p id=\"count\">0</p>\n<script>\nlet count = 0;\nconst button = document.querySelector('#count-button');\nconst display = document.querySelector('#count');\nbutton.addEventListener('click', () => { count += 1; display.textContent = String(count); });\n</script>",
+        "output": "Clicking Add changes the paragraph from 0 to 1, then increments it on each click.",
+        "takeaways": [
+          "Use DOM queries to locate elements and event listeners to react to actions.",
+          "Update plain text with textContent rather than unsafe HTML insertion.",
+          "Ensure scripts run when the target elements are available."
+        ]
+      },
+      {
+        "number": 5,
+        "title": "Forms and Accessibility",
+        "description": "Build forms that are understandable to assistive technologies and provide useful validation feedback.",
+        "notes": [
+          "Associate each form control with a visible label using matching for and id values; placeholder text is not a replacement for a label.",
+          "Use appropriate input types and built-in constraints such as required and type=email to support user input and browser validation.",
+          "Group related controls with fieldset and legend when the group needs a shared label.",
+          "Validation should explain how to fix an error; do not rely on color alone to convey status."
+        ],
+        "code": "<form>\n  <label for=\"email\">Email address</label>\n  <input id=\"email\" name=\"email\" type=\"email\" required>\n  <button type=\"submit\">Subscribe</button>\n</form>",
+        "output": "A labeled email field and Subscribe button render; submitting an empty or invalid email is blocked by native browser validation.",
+        "takeaways": [
+          "Connect visible labels to controls with for and id.",
+          "Use semantic input types and native constraints appropriately.",
+          "Make errors clear and actionable for all users."
+        ]
+      },
+      {
+        "number": 6,
+        "title": "Shipping and Debugging",
+        "description": "Check a web page systematically, diagnose common issues, and prepare it for delivery.",
+        "notes": [
+          "Use browser developer tools to inspect the DOM, computed styles, console errors, network requests, and responsive viewport behavior.",
+          "Validate HTML and test links, keyboard navigation, form behavior, and layouts at multiple viewport widths before shipping.",
+          "A production checklist should confirm correct asset paths, meaningful page metadata, and that no development-only errors remain.",
+          "Reproduce a bug, inspect the relevant evidence, make one focused change, and retest the affected behavior."
+        ],
+        "code": "function add(a, b) { return Number(a) + Number(b); }\nconsole.assert(add('2', '3') === 5, 'numeric input');\nconsole.log('Check complete');",
+        "output": "Check complete (the assertion passes). In a browser, also verify the page at narrow and wide viewport widths.",
+        "takeaways": [
+          "Use the console, inspector, and network panel to narrow down defects.",
+          "Test keyboard use, forms, links, and responsive layouts before delivery.",
+          "Retest after each focused fix and check for console errors."
+        ]
+      }
+    ]
+  }
+}

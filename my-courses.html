@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Continue Skillora courses and see your saved learning progress.">
+    <title>My Courses | Skillora</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="course-path.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar path-navbar">
+        <a href="index.html" class="logo">Skillora<span>.</span></a>
+        <a href="profile.html">← Back to profile</a>
+    </nav>
+    <main class="saved-notes-main">
+        <header class="path-hero">
+            <p class="path-eyebrow">✦ Your learning library</p>
+            <h1>My Courses</h1>
+            <p>Pick up where you left off, or explore a new subject.</p>
+        </header>
+        <section aria-labelledby="my-courses-title">
+            <h2 id="my-courses-title">Available learning paths</h2>
+            <div id="my-courses-list" class="saved-notes-list" aria-live="polite"><p class="path-loading">Loading courses…</p></div>
+        </section>
+    </main>
+    <footer><a href="index.html" class="logo">Skillora<span>.</span></a><p>Learn. Create. Grow. © 2026 Skillora</p></footer>
+    <script type="module" src="my-courses.js"></script>
+</body>
+</html>
