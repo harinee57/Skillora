@@ -1,0 +1,623 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operators in Python | Skillora</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'DM Sans', sans-serif;
+            background: #f8f9fc;
+            color: #202333;
+        }
+
+        .module-navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 7%;
+            background: white;
+            border-bottom: 1px solid #ececf2;
+        }
+
+        .brand {
+            font-family: 'Outfit', sans-serif;
+            font-size: 25px;
+            font-weight: 800;
+            color: #6c5ce7;
+            text-decoration: none;
+        }
+
+        .back-link {
+            color: #6c5ce7;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .module-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 24px;
+        }
+
+        .module-hero {
+            background: linear-gradient(135deg, #6c5ce7, #8e7dff);
+            color: white;
+            padding: 45px;
+            border-radius: 22px;
+            margin-bottom: 30px;
+        }
+
+        .module-eyebrow {
+            font-size: 13px;
+            letter-spacing: 2px;
+            font-weight: 700;
+            opacity: 0.85;
+        }
+
+        .module-hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 40px;
+            margin: 12px 0;
+        }
+
+        .module-hero p {
+            font-size: 16px;
+            line-height: 1.7;
+            max-width: 650px;
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.25);
+            border-radius: 20px;
+            margin-top: 25px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: white;
+            border-radius: 20px;
+            transition: width 0.4s ease;
+        }
+
+        .progress-text {
+            display: block;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+
+        .summary-card {
+            background: white;
+            padding: 22px;
+            border-radius: 16px;
+            border: 1px solid #ececf2;
+        }
+
+        .summary-card span {
+            font-size: 13px;
+            color: #777b8b;
+        }
+
+        .summary-card h2 {
+            margin: 10px 0 0;
+            font-family: 'Outfit', sans-serif;
+            font-size: 27px;
+        }
+
+        .module-tabs {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .tab-btn {
+            border: 1px solid #e4e4ed;
+            background: white;
+            color: #55596a;
+            padding: 12px 22px;
+            border-radius: 10px;
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .tab-btn.active {
+            background: #6c5ce7;
+            color: white;
+            border-color: #6c5ce7;
+        }
+
+        .section-heading {
+            font-family: 'Outfit', sans-serif;
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+
+        .article-list,
+        .problem-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .article-card,
+        .problem-card {
+            background: white;
+            border: 1px solid #ececf2;
+            padding: 25px;
+            border-radius: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .article-card:hover,
+        .problem-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(30,30,60,0.06);
+        }
+
+        .article-card h3,
+        .problem-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            margin: 12px 0;
+        }
+
+        .article-card p,
+        .problem-card p {
+            color: #747789;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .article-tag {
+            color: #6c5ce7;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .card-btn {
+            margin-top: 15px;
+            padding: 10px 18px;
+            border: none;
+            background: #f0edff;
+            color: #6c5ce7;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .card-btn:hover {
+            background: #6c5ce7;
+            color: white;
+        }
+
+        .quiz-locked {
+            background: white;
+            border: 1px solid #ececf2;
+            padding: 35px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .quiz-locked h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 23px;
+        }
+
+        .quiz-locked p {
+            color: #777b8b;
+        }
+
+        .next-module-btn {
+            display: none;
+            text-decoration: none;
+            background: #6c5ce7;
+            color: white;
+            padding: 14px 25px;
+            border-radius: 10px;
+            font-weight: 700;
+            margin-top: 25px;
+        }
+
+        .module-footer {
+            text-align: center;
+            padding: 35px;
+            color: #888b99;
+            font-size: 13px;
+        }
+
+        /* Lesson Modal */
+
+        .lesson-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(18, 18, 35, 0.7);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 30px 15px;
+        }
+
+        .lesson-modal.active {
+            display: block;
+        }
+
+        .lesson-content {
+            max-width: 850px;
+            margin: auto;
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            border: none;
+            background: #f1f1f7;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .lesson-content h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 30px;
+        }
+
+        .lesson-notes {
+            line-height: 1.8;
+            color: #55596a;
+            margin: 20px 0;
+        }
+
+        .animation-box {
+            background: #f7f5ff;
+            padding: 25px;
+            border-radius: 14px;
+            margin: 25px 0;
+        }
+
+        .animation-stage {
+            min-height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .operator-box {
+            background: white;
+            border: 2px solid #d9d2ff;
+            color: #6c5ce7;
+            padding: 20px 25px;
+            border-radius: 12px;
+            font-size: 24px;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .operator-result {
+            background: #6c5ce7;
+            color: white;
+            padding: 20px 25px;
+            border-radius: 12px;
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .lesson-code {
+            background: #1e1e2e;
+            color: #e5e5f1;
+            padding: 22px;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-family: Consolas, monospace;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .run-code-btn {
+            background: #6c5ce7;
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .python-editor {
+            width: 100%;
+            min-height: 150px;
+            resize: vertical;
+            border: 1px solid #dedee9;
+            border-radius: 10px;
+            padding: 15px;
+            font-family: Consolas, monospace;
+            font-size: 14px;
+            line-height: 1.7;
+            background: #fafaff;
+        }
+
+        .output-box {
+            background: #1e1e2e;
+            color: #a6e3a1;
+            padding: 18px;
+            border-radius: 10px;
+            min-height: 45px;
+            margin-top: 15px;
+            font-family: Consolas, monospace;
+            white-space: pre-wrap;
+        }
+
+        .challenge-box {
+            background: #fff9e8;
+            border: 1px solid #ffe5a0;
+            padding: 22px;
+            border-radius: 12px;
+            margin-top: 25px;
+        }
+
+        .challenge-box h3 {
+            font-size: 20px;
+        }
+
+        .challenge-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .challenge-option {
+            padding: 12px 18px;
+            border: 1px solid #e4d7b2;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 600;
+        }
+
+        .challenge-option.correct {
+            background: #d8f5df;
+            border-color: #5cb878;
+        }
+
+        .challenge-option.wrong {
+            background: #ffe0e0;
+            border-color: #e77b7b;
+        }
+
+        .complete-article-btn {
+            background: #24243a;
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            font-family: inherit;
+            margin-top: 25px;
+        }
+
+        /* Quiz */
+
+        .quiz-question {
+            background: white;
+            border: 1px solid #ececf2;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .quiz-question h3 {
+            font-size: 18px;
+            margin-bottom: 18px;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            text-align: left;
+            padding: 13px 16px;
+            border: 1px solid #e2e2eb;
+            background: #fafaff;
+            border-radius: 9px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .quiz-option.selected {
+            border-color: #6c5ce7;
+            background: #f0edff;
+        }
+
+        .quiz-option.correct {
+            border-color: #49a96b;
+            background: #e0f7e8;
+        }
+
+        .quiz-option.wrong {
+            border-color: #e36d6d;
+            background: #ffe6e6;
+        }
+
+        .submit-quiz-btn {
+            background: #6c5ce7;
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .quiz-result {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background: #f0edff;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .module-hero {
+                padding: 28px;
+            }
+
+            .module-hero h1 {
+                font-size: 30px;
+            }
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .article-list,
+            .problem-list {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-content {
+                padding: 25px 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="module-navbar">
+        <a href="index.html" class="brand">Skillora</a>
+        <a href="python.html" class="back-link">← Back to Python</a>
+    </nav>
+
+    <main class="module-container">
+
+        <section class="module-hero">
+            <span class="module-eyebrow">PYTHON · MODULE 03</span>
+            <h1>Operators in Python.</h1>
+            <p>
+                Learn how to perform calculations, compare values, and make
+                decisions using Python operators. Practice with interactive
+                examples and write your own code.
+            </p>
+
+            <div class="progress-track">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+
+            <span class="progress-text" id="progress-text">
+                0 of 5 articles completed
+            </span>
+        </section>
+
+        <section class="summary-grid">
+            <div class="summary-card">
+                <span>Articles Completed</span>
+                <h2 id="completed-count">0 / 5</h2>
+            </div>
+
+            <div class="summary-card">
+                <span>Module Progress</span>
+                <h2 id="progress-percent">0%</h2>
+            </div>
+
+            <div class="summary-card">
+                <span>Module Quiz</span>
+                <h2 id="quiz-status">Locked</h2>
+            </div>
+        </section>
+
+        <div class="module-tabs">
+            <button class="tab-btn active" data-tab="all">All Content</button>
+            <button class="tab-btn" data-tab="articles">Articles</button>
+            <button class="tab-btn" data-tab="problems">Practice Problems</button>
+            <button class="tab-btn" data-tab="quiz">Module Quiz 🔒</button>
+        </div>
+
+        <section id="articles-section">
+            <h2 class="section-heading">Learning Articles</h2>
+            <div class="article-list" id="article-list"></div>
+        </section>
+
+        <section id="problems-section" hidden>
+            <h2 class="section-heading">Practice Problems</h2>
+            <div class="problem-list" id="problem-list"></div>
+        </section>
+
+        <section id="quiz-section" hidden>
+            <h2 class="section-heading">Module Quiz</h2>
+            <div id="quiz-container"></div>
+        </section>
+
+        <div style="text-align:center; margin-top:40px;">
+            <a href="python-module-4.html" class="next-module-btn" id="next-module-btn">
+                Continue to Module 04 →
+            </a>
+        </div>
+
+    </main>
+
+    <footer class="module-footer">
+        © 2026 Skillora. Learn something new every day.
+    </footer>
+
+    <!-- Lesson Modal -->
+
+    <div class="lesson-modal" id="lesson-modal">
+        <div class="lesson-content">
+            <button class="close-modal" id="close-modal">&times;</button>
+
+            <div id="lesson-body"></div>
+        </div>
+    </div>
+
+    <!-- GSAP -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+
+    <!-- Module JavaScript -->
+
+    <script type="module" src="python-module-3.js"></script>
+
+</body>
+</html>

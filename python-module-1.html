@@ -1,0 +1,335 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Python | Skillora</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .module-dashboard {
+            max-width: 1150px;
+            margin: 60px auto;
+            padding: 0 24px;
+        }
+
+        .module-hero {
+            padding: 65px 8%;
+            background: linear-gradient(125deg, #f4edff, #fff 65%, #eee5ff);
+        }
+
+        .module-hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            margin: 12px 0;
+        }
+
+        .module-progress {
+            max-width: 550px;
+            margin-top: 35px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .progress-track {
+            height: 9px;
+            background: #e8ddfa;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        #progress-fill {
+            height: 100%;
+            width: 0%;
+            background: #9575db;
+            transition: width .4s ease;
+        }
+
+        .module-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .module-tabs button {
+            padding: 11px 22px;
+            border: 1px solid #e7def4;
+            border-radius: 25px;
+            background: white;
+            cursor: pointer;
+            font: inherit;
+        }
+
+        .module-tabs button.active {
+            background: #8e6bc9;
+            color: white;
+            border-color: #8e6bc9;
+        }
+
+        .module-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 18px;
+            margin-bottom: 35px;
+        }
+
+        .summary-card {
+            padding: 23px;
+            border: 1px solid #eee7f7;
+            border-radius: 18px;
+            background: white;
+        }
+
+        .summary-card h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 30px;
+            margin: 0 0 5px;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 14px;
+        }
+
+        .article-card {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 22px;
+            border: 1px solid #eee7f7;
+            border-radius: 17px;
+            background: white;
+            transition: .2s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px #4b287512;
+        }
+
+        .article-number {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            background: #f1eaff;
+            color: #805bbd;
+            font-weight: 700;
+        }
+
+        .article-info {
+            flex: 1;
+        }
+
+        .article-info h3 {
+            margin: 0 0 6px;
+            font-size: 17px;
+        }
+
+        .article-info p {
+            margin: 0;
+            color: #777;
+            font-size: 13px;
+        }
+
+        .article-status {
+            color: #9877c9;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .article-open {
+            border: 0;
+            background: #f2ecfc;
+            color: #7654b1;
+            padding: 10px 17px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .article-open:hover {
+            background: #e7dcfa;
+        }
+
+        .locked-quiz {
+            padding: 35px;
+            text-align: center;
+            background: #faf7ff;
+            border: 1px solid #eee5fa;
+            border-radius: 20px;
+        }
+
+        .locked-quiz h2 {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .empty-message {
+            padding: 35px;
+            text-align: center;
+            color: #777;
+        }
+
+        /* NEXT MODULE BUTTON */
+
+        .next-module-container {
+            display: flex;
+            justify-content: flex-end;
+            margin: 30px 0;
+        }
+
+        .next-module-btn {
+            display: none;
+            padding: 13px 26px;
+            border: none;
+            border-radius: 25px;
+            background: #8e6bc9;
+            color: white;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .3s ease;
+        }
+
+        .next-module-btn:hover {
+            background: #7654b1;
+            transform: translateY(-2px);
+        }
+
+        @media(max-width:600px) {
+            .article-card {
+                flex-wrap: wrap;
+            }
+
+            .article-open {
+                width: 100%;
+            }
+
+            .next-module-container {
+                justify-content: center;
+            }
+
+            .next-module-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <a href="index.html" class="logo">Skillora<span>.</span></a>
+    <a href="python.html">← Back to Python</a>
+</nav>
+
+<section class="module-hero">
+    <p class="eyebrow">✦ PYTHON · MODULE 01</p>
+    <h1>Introduction to <span>Python.</span></h1>
+    <p>Understand Python through interactive lessons, examples and challenges.</p>
+
+    <div class="module-progress">
+        <div class="progress-info">
+            <span>Your article progress</span>
+            <span id="progress-text">0 of 2 articles completed</span>
+        </div>
+
+        <div class="progress-track">
+            <div id="progress-fill"></div>
+        </div>
+    </div>
+</section>
+
+<main class="module-dashboard">
+
+    <div class="module-summary">
+
+        <div class="summary-card">
+            <h2 id="completed-count">0 / 2</h2>
+            <p>Articles completed</p>
+        </div>
+
+        <div class="summary-card">
+            <h2 id="progress-percent">0%</h2>
+            <p>Module progress</p>
+        </div>
+
+        <div class="summary-card">
+            <h2 id="quiz-status">Locked</h2>
+            <p>Final assessment</p>
+        </div>
+
+    </div>
+
+    <div class="module-tabs">
+        <button class="active" data-tab="all">All</button>
+        <button data-tab="articles">Articles</button>
+        <button data-tab="problems">Problems</button>
+        <button data-tab="quiz">Quiz</button>
+    </div>
+
+    <section id="articles-section">
+
+        <p class="eyebrow">✦ LEARNING PATH</p>
+        <h2>Explore your articles.</h2>
+        <p>Complete each lesson to unlock your final assessment.</p>
+
+        <div class="article-list" id="article-list"></div>
+
+    </section>
+
+    <section id="problems-section" hidden>
+
+        <p class="eyebrow">✦ PRACTICE</p>
+        <h2>Test your understanding.</h2>
+
+        <div class="article-list" id="problem-list"></div>
+
+    </section>
+
+    <section id="quiz-section" hidden>
+
+        <div class="locked-quiz" id="quiz-container">
+            <h2>🔒 Final Assessment</h2>
+            <p>Complete all articles to unlock your assessment.</p>
+            <p id="quiz-lock-status">0 of 2 articles completed.</p>
+        </div>
+
+    </section>
+
+    <!-- NEXT MODULE BUTTON -->
+
+    <div class="next-module-container">
+        <button
+            id="next-module-btn"
+            class="next-module-btn"
+            onclick="window.location.href='python-module-2.html'">
+            Next Module →
+        </button>
+    </div>
+
+</main>
+
+<footer>
+    <a href="index.html" class="logo">Skillora<span>.</span></a>
+    <p>Learn. Create. Grow. © 2026 Skillora</p>
+</footer>
+
+<script type="module" src="python-module-1.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | Skillora</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="profile-page">
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">Skillora<span>.</span></a>
+        <a href="index.html">← Back to Home</a>
+    </nav>
+
+    <main class="profile-container">
+
+        <section class="profile-header">
+
+            <div class="profile-avatar" id="profile-avatar">
+    <img id="profile-photo" src="" alt="Profile Picture" hidden>
+    <span id="profile-initial">U</span>
+</div>
+
+            <div class="profile-intro">
+                <p class="eyebrow">✦ YOUR PERSONAL SPACE</p>
+
+                <h1>Hello, <span id="profile-name">Learner</span>.</h1>
+
+                <p id="profile-email">Loading your account...</p>
+            </div>
+
+            <button id="edit-profile-btn" class="edit-profile-btn">
+                Edit Profile
+            </button>
+
+        </section>
+
+        <section class="profile-stats">
+
+            <div class="profile-stat">
+                <span>MY COURSES</span>
+                <h2 id="course-count">0</h2>
+            </div>
+
+            <div class="profile-stat">
+                <span>LESSONS COMPLETED</span>
+                <h2 id="lesson-count">0</h2>
+            </div>
+
+            <div class="profile-stat">
+                <span>OVERALL PROGRESS</span>
+                <h2 id="overall-progress">0%</h2>
+            </div>
+
+        </section>
+
+        <section class="profile-menu">
+
+            <a href="my-courses.html" class="profile-menu-item">
+                <div class="menu-icon">
+                    <span>01</span>
+                </div>
+                <div>
+                    <h3>My Courses</h3>
+                    <p>Continue learning and track your progress.</p>
+                </div>
+                <span class="menu-arrow">↗</span>
+            </a>
+
+            <a href="my-notes.html" class="profile-menu-item">
+                <div class="menu-icon">
+                    <span>02</span>
+                </div>
+                <div>
+                    <h3>My Notes</h3>
+                    <p>Your saved notes and learning summaries.</p>
+                </div>
+                <span class="menu-arrow">↗</span>
+            </a>
+
+            <a href="settings.html" class="profile-menu-item">
+                <div class="menu-icon">
+                    <span>03</span>
+                </div>
+                <div>
+                    <h3>Settings</h3>
+                    <p>Manage your account and preferences.</p>
+                </div>
+                <span class="menu-arrow">↗</span>
+            </a>
+
+        </section>
+
+        <button id="logout-btn" class="logout-btn">
+            Log Out →
+        </button>
+
+    </main>
+
+    <script type="module" src="profile.js"></script>
+
+</body>
+</html>

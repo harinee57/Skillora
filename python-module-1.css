@@ -1,0 +1,333 @@
+
+/* ============================
+   SKILLORA - PYTHON MODULE
+============================ */
+
+.module-hero {
+    padding: 75px 8% 45px;
+    background: linear-gradient(135deg, #F8F5FF, #EDE5FF);
+}
+
+.module-hero h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(36px, 5vw, 58px);
+    color: #30234C;
+    margin: 15px 0;
+}
+
+.module-hero h1 span {
+    color: #9575DB;
+}
+
+.module-hero > p:not(.eyebrow) {
+    color: #716781;
+    max-width: 550px;
+    line-height: 1.7;
+}
+
+.module-progress {
+    max-width: 500px;
+    margin-top: 35px;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    color: #514765;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.progress-track {
+    height: 8px;
+    background: #DDD2F5;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#progress-fill {
+    height: 100%;
+    width: 0%;
+    background: #9575DB;
+    border-radius: 20px;
+    transition: width 0.5s ease;
+}
+
+.learning-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 45px;
+    padding: 55px 8%;
+    max-width: 1500px;
+    margin: auto;
+}
+
+.lesson-sidebar {
+    border-right: 1px solid #EAE4F3;
+    padding-right: 22px;
+}
+
+.lesson-sidebar .eyebrow {
+    margin-bottom: 20px;
+}
+
+.lesson-item {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 8px;
+    border: none;
+    border-radius: 12px;
+    background: transparent;
+    text-align: left;
+    color: #514765;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.lesson-item:hover {
+    background: #F5F0FF;
+}
+
+.lesson-item.active {
+    background: #EDE5FF;
+    color: #6845A8;
+    font-weight: 700;
+}
+
+.lesson-item span {
+    display: block;
+    font-size: 11px;
+    color: #998BAF;
+    margin-bottom: 5px;
+}
+
+.lesson-content h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 34px;
+    color: #30234C;
+    margin: 12px 0;
+}
+
+.lesson-content > p:not(.eyebrow) {
+    color: #716781;
+    line-height: 1.7;
+}
+
+.animation-stage {
+    min-height: 300px;
+    margin: 30px 0;
+    padding: 35px 20px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, #F8F5FF, #EEE7FC);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.computer {
+    width: 230px;
+    animation: computerAppear 0.8s ease both;
+}
+
+.computer-screen {
+    height: 145px;
+    background: #30234C;
+    border: 7px solid #BCA8E8;
+    border-radius: 13px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.screen-dot {
+    position: absolute;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #BDA5F1;
+}
+
+.screen-dot:nth-child(1) {
+    left: 12px;
+}
+
+.screen-dot:nth-child(2) {
+    left: 24px;
+}
+
+.screen-dot:nth-child(3) {
+    left: 36px;
+}
+
+.computer-message {
+    color: #CBB6FF;
+    font-family: monospace;
+    font-size: 19px;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px;
+}
+
+.computer-base {
+    height: 12px;
+    width: 260px;
+    margin-left: -15px;
+    background: #BCA8E8;
+    border-radius: 0 0 8px 8px;
+}
+
+.animation-caption {
+    margin-top: 25px;
+    color: #625477;
+    text-align: center;
+    font-size: 14px;
+    animation: captionAppear 1s ease;
+}
+
+.explanation {
+    padding: 25px;
+    border: 1px solid #EAE4F3;
+    border-radius: 16px;
+    margin-bottom: 25px;
+}
+
+.explanation h3,
+.code-example h3 {
+    font-family: 'Outfit', sans-serif;
+    color: #30234C;
+    margin-bottom: 12px;
+}
+
+.explanation p {
+    color: #716781;
+    line-height: 1.8;
+}
+
+.code-example {
+    padding: 25px;
+    background: #F8F5FF;
+    border-radius: 16px;
+    margin-bottom: 25px;
+}
+
+.code-example pre {
+    padding: 20px;
+    background: #30234C;
+    color: #E8DBFF;
+    border-radius: 12px;
+    overflow-x: auto;
+    font-size: 14px;
+}
+
+.output-box {
+    margin-top: 15px;
+    padding: 18px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    color: #514765;
+}
+
+.output-box p {
+    color: #9575DB;
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.lesson-tip {
+    padding: 18px;
+    background: #F1ECFC;
+    border-left: 4px solid #9575DB;
+    border-radius: 8px;
+    color: #514765;
+    line-height: 1.6;
+}
+
+.lesson-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.lesson-navigation button {
+    padding: 13px 19px;
+    border: none;
+    border-radius: 10px;
+    background: #EDE5FF;
+    color: #514765;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.lesson-navigation button:hover {
+    transform: translateY(-2px);
+    background: #DDD0FA;
+}
+
+.lesson-navigation #complete-btn {
+    background: #9575DB;
+    color: white;
+}
+
+.lesson-navigation #complete-btn:hover {
+    background: #8060C4;
+}
+
+.lesson-navigation button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+}
+
+@keyframes computerAppear {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes captionAppear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 800px) {
+    .learning-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 35px 5%;
+    }
+
+    .lesson-sidebar {
+        border-right: none;
+        border-bottom: 1px solid #EAE4F3;
+        padding: 0 0 20px;
+    }
+
+    .lesson-content h2 {
+        font-size: 28px;
+    }
+
+    .module-hero {
+        padding: 50px 5% 35px;
+    }
+}

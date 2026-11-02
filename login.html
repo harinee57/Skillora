@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sign In | Skillora</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="auth-page">
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">Skillora<span>.</span></a>
+        <a href="index.html">← Back to Home</a>
+    </nav>
+
+    <main class="auth-container">
+
+        <section class="auth-card">
+
+            <p class="eyebrow">✦ YOUR LEARNING JOURNEY</p>
+
+            <h1 id="auth-title">Welcome <span>back.</span></h1>
+
+            <p id="auth-description">
+                Sign in to continue learning where you left off.
+            </p>
+
+            <button type="button" id="google-btn" class="google-btn">
+                <span>G</span> Continue with Google
+            </button>
+
+            <div class="auth-divider">
+                <span>OR CONTINUE WITH EMAIL</span>
+            </div>
+
+            <form id="auth-form">
+
+                <div class="auth-field" id="name-field" hidden>
+                    <label for="name">Full name</label>
+                    <input type="text" id="name" placeholder="Your name">
+                </div>
+
+                <div class="auth-field">
+                    <label for="email">Email address</label>
+                    <input type="email" id="email" placeholder="you@example.com" required>
+                </div>
+
+                <div class="auth-field">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter password" required>
+                </div>
+
+                <button type="submit" id="submit-btn" class="auth-submit">
+                    Sign In →
+                </button>
+
+            </form>
+
+            <p id="auth-message" role="status"></p>
+
+            <p class="auth-switch">
+                <span id="switch-text">New to Skillora?</span>
+                <button type="button" id="switch-btn">Create account</button>
+            </p>
+
+        </section>
+
+        <div class="auth-visual">
+            <p class="eyebrow">A LITTLE PROGRESS EVERY DAY</p>
+            <h2>Learn today.<br><span>Grow tomorrow.</span></h2>
+            <p>Your skills. Your pace. Your journey.</p>
+        </div>
+
+    </main>
+
+    <script type="module" src="auth.js"></script>
+
+</body>
+</html>
